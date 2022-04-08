@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+
+class Goomba {
+private:
+	int xPosition;
+	int yPosition;
+	char dir;
+
+public:
+	Goomba(int x, int y); //constructors always have the name of their class!
+	void move();
+	void print();
+
+	
+};
+
+int main(){
+	/*Goomba g1;
+	Goomba g2;
+	g1.setPosition(300, 200);*/
+
+	Goomba g1(300, 200); //instantiate with constructor
+	Goomba g2(300, 200);//instantiate one more goomba here
+
+	while (1) {//GAME LOOP
+		g1.move();
+		g1.print();
+		g2.move();
+		g2.print();//call move/print on your second goomba (you made on line 24)
+		system("pause");
+	}
+	
+}
+
+//constructor
+Goomba::Goomba(int x, int y) {
+	xPosition = x;
+	yPosition = y;
+	dir = 'l';
+}
+
+void Goomba:: move() {
+	if (dir == 'l')
+		xPosition -= 10;
+	if (xPosition <= 0)
+		dir = 'r';
+	if (dir == 'r')
+		xPosition += 10;
+	if (xPosition <= 0)
+		dir = 'l';
+
+	//add right direction here
+}
+
+void Goomba::print() {
+	cout << "hi im a goomba and my coordinates are " << xPosition << " , " << yPosition << endl;
+	if (dir == 'l')
+		cout << "I'm heading left" << endl;
+	if (dir == 'r')
+		cout << "I'm heading right" << endl;//add right here.
+}
